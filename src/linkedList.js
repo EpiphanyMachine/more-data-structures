@@ -1,31 +1,31 @@
 var makeLinkedList = function(){
   var newLinkedList = {};
-  // newLinkedList.head;
-  // newLinkedList.tail;
 
   newLinkedList.addToTail = function(value){
     if (value === undefined) {return;}
-    if (this.tail === undefined) {
-      this.tail = makeNode(value);
-      this.head = this.tail;
+    if (this._tail === undefined) {
+      this._tail = makeNode(value);
+      this._head = this._tail;
     } else {
-      this.tail.next = makeNode(value);
-      this.tail = this.tail.next;
+      this._tail.next = makeNode(value);
+      this._tail = this._tail.next;
     }
   };
 
   newLinkedList.removeHead = function(){
-    if (this.head === undefined) {
+    if (this._head === undefined) {
       return; // if no head return undefined
     }
-    var tempval = this.head.value;
+    var tempval = this._head.value;
     //debugger;
-    if (this.head.next) {this.head = this.head.next;}
-    else {delete this.tail; delete this.head;}
+    if (this._head.next) {this._head = this._head.next;}
+    else {delete this._tail; delete this._head;}
     return tempval;
   };
 
-  newLinkedList.contains = function(){
+  newLinkedList.contains = function(val, node){
+    node = node || this._head;
+    return (node.value === val) || (node.next ? this.contains(val, node.next) : false);
   };
 
   return newLinkedList;
@@ -41,52 +41,3 @@ var makeNode = function(value){
 
   return newNode;
 };
-
-
-
-
-// var newLinkedList = {};
-// newLinkedList.head = null;
-// newLinkedList.tail = null;
-// newLinkedList.newId = 0; //initial value
-// newLinkedList.newNodeName = function(){return JSON.stringify('node' + this.newId);};
-
-// newLinkedList.addToTail = function(value){
-//   debugger;
-//   if(this.tail === null) {
-//     // create a head (which is also the tail because the list contains 1 item)
-//     this.+newNodeName() = this.makeNode(value, null);
-//     // set as head and tail by id
-//     this.tail = this.newNodeName();
-//     this.head = this.newNodeName();
-//     // make new unique id
-//     this.newId ++;
-//   } else {
-//     // append to the current tail, set current tail as next
-//     this.newNodeName() = this.makeNode(value, this.tail);
-//     // set node as new tail
-//     this.tail = this.newNodeName();
-//     // make new unique id
-//     this.newId ++;
-//   }
-// };
-
-// newLinkedList.removeHead = function(){
-// };
-
-// newLinkedList.contains = function(){
-// };
-
-// newLinkedList.makeNode = function(value, next){
-//   var newNode = {
-//     'value': value,
-//     'next': next
-//     };
-//   return newNode;
-// };
-
-// newLinkedList.removeNextNode = function(){
-//   //isnt this the same as removeHead ???
-// };
-
-// return newLinkedList;
