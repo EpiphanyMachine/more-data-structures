@@ -31,5 +31,17 @@ describe("tree", function() {
     expect(tree.contains('sdsf')).toEqual(false);
   });
 
+  it("should traverse to each node in the tree", function() {
+    tree.addChild('high1');
+    tree.addChild('high2');
+    tree.children[0].addChild('mid1');
+    tree.children[0].addChild('mid2');
+    var count = 0;
+    tree.traverse(function(){
+      count++;
+    });
+    expect(count).toEqual(5);
+  });
+
   // Add more tests here to test the functionality of tree.
 });

@@ -16,3 +16,8 @@ treeMethods.addChild = function(val){
 treeMethods.contains = function(val){
   return this.value === val || _.any(_.invoke(this.children, 'contains', val));
 };
+
+treeMethods.traverse = function(func){
+  func.call(this);
+  _.invoke(this.children, 'traverse', func);
+};
