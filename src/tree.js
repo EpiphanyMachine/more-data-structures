@@ -21,8 +21,8 @@ treeMethods.contains = function(val){
 };
 
 treeMethods.traverse = function(func){
-  // calls func on each node in a tree
-  func.call(this);
+  // calls func on each value in a tree
+  func.call(this.value);
   _.invoke(this.children, 'traverse', func);
 };
 
