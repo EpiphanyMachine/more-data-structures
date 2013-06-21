@@ -7,13 +7,13 @@ var makeSet = function(){
 var setPrototype = {};
 
 setPrototype.add = function(val){
-  this._storage[val] = '';
+  this._storage[JSON.stringify(val)] = '';
 };
 
 setPrototype.contains = function(val){
-  return this._storage.hasOwnProperty(val);
+  return this._storage.hasOwnProperty(JSON.stringify(val));
 };
 
 setPrototype.remove = function(val){
-  delete this._storage[val];
+  delete this._storage[JSON.stringify(val)];
 };

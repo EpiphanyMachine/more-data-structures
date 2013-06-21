@@ -11,10 +11,22 @@ describe("set", function() {
     expect(set.remove).toEqual(jasmine.any(Function));
   });
 
-  it("should add values", function() {
+  it("should add strings", function() {
     set.add('test1');
-    expect(set._storage['test1']).toEqual('');
+    expect(set._storage['"test1"']).toEqual('');
     expect(set._storage['othertest']).toEqual(undefined);
+  });
+
+  it("should add numbers", function() {
+    set.add(1);
+    expect(set._storage[1]).toEqual('');
+    expect(set._storage[3]).toEqual(undefined);
+  });
+
+  it("should add objects", function() {
+    set.add({a:1});
+    expect(set._storage['{"a":1}']).toEqual('');
+    expect(set._storage['{"b":1}']).toEqual(undefined);
   });
 
   it("should should not allow duplicate values", function() {
