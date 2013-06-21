@@ -32,9 +32,12 @@ var makeLinkedList = function(){
   newLinkedList.removeHead = function(){
     // if no head return undefined
     if (this._head === undefined) {return;}
-    // delete and return head
+    // delete, return head, set 
     var tempval = this._head.value;
-    if (this._head.next) {this._head = this._head.next;}
+    if (this._head.next) {
+      this._head.next.previous = null;
+      this._head = this._head.next;
+    }
     else {delete this._tail; delete this._head;}
     return tempval;
   };
@@ -44,7 +47,10 @@ var makeLinkedList = function(){
     if (this._tail === undefined) {return;}
     // delete and return tail
     var tempval = this._tail.value;
-    if (this._tail.previous) {this._tail = this._tail.previous;}
+    if (this._tail.previous) {
+      this._tail.previous.next = null;
+      this._tail = this._tail.previous;
+    }
     else {delete this._head; delete this._tail;}
     return tempval;
   };

@@ -36,6 +36,22 @@ describe("linkedList", function() {
     expect(linkedList.removeHead()).toEqual('three');
   });
 
+  it("should change link from next to head to null on removeHead", function() {
+    linkedList.addToTail('one');
+    linkedList.addToTail('two');
+    linkedList.addToTail('three');
+    expect(linkedList.removeHead()).toEqual('one');
+    expect(linkedList._head.previous).toEqual(null);
+  });
+
+  it("should change link from previous to tail to null on removeTail", function() {
+    linkedList.addToTail('one');
+    linkedList.addToTail('two');
+    linkedList.addToTail('three');
+    expect(linkedList.removeTail()).toEqual('three');
+    expect(linkedList._tail.next).toEqual(null);
+  });
+
   it("should be able to add to head or tail", function() {
     linkedList.addToTail('two');
     linkedList.addToHead('one');
