@@ -15,8 +15,14 @@ describe("linkedList", function() {
     expect(linkedList.addToTail()).toEqual(undefined);
   });
 
-  it("if a single node is added, it should be set to head and tail", function() {
+  it("if a single node is added to tail, it should be set to head and tail", function() {
     linkedList.addToTail('one');
+    expect(Object.keys(linkedList)).toContain("_head");
+    expect(Object.keys(linkedList)).toContain("_tail");
+  });
+
+  it("if a single node is added to head, it should be set to head and tail", function() {
+    linkedList.addToHead('one');
     expect(Object.keys(linkedList)).toContain("_head");
     expect(Object.keys(linkedList)).toContain("_tail");
   });
@@ -28,6 +34,24 @@ describe("linkedList", function() {
     expect(linkedList.removeHead()).toEqual('one');
     expect(linkedList.removeHead()).toEqual('two');
     expect(linkedList.removeHead()).toEqual('three');
+  });
+
+  it("should be able to add to head or tail", function() {
+    linkedList.addToTail('two');
+    linkedList.addToHead('one');
+    linkedList.addToTail('three');
+    expect(linkedList.removeHead()).toEqual('one');
+    expect(linkedList.removeHead()).toEqual('two');
+    expect(linkedList.removeHead()).toEqual('three');
+  });
+
+  it("should return the tail on a removeTail", function() {
+    linkedList.addToTail('two');
+    linkedList.addToHead('three');
+    linkedList.addToTail('one');
+    expect(linkedList.removeTail()).toEqual('one');
+    expect(linkedList.removeTail()).toEqual('two');
+    expect(linkedList.removeTail()).toEqual('three');
   });
 
   it("should remove head and tail when last node is removed", function() {

@@ -2,24 +2,50 @@ var makeLinkedList = function(){
   var newLinkedList = {};
 
   newLinkedList.addToTail = function(value){
+    // check if a value is being passing in
     if (value === undefined) {return;}
+    // check if there are any nodes, create first node
     if (this._tail === undefined) {
       this._tail = makeNode(value);
       this._head = this._tail;
-    } else {
+    } else { // add to tail
       this._tail.next = makeNode(value);
+      this._tail.next.previous = this._tail;
       this._tail = this._tail.next;
     }
   };
 
-  newLinkedList.removeHead = function(){
-    if (this._head === undefined) {
-      return; // if no head return undefined
+  newLinkedList.addToHead = function(value){
+    // check if a value is being passing in
+    if (value === undefined) {return;}
+    // check if there are any nodes, create first node
+    if (this._tail === undefined) {
+      this._tail = makeNode(value);
+      this._head = this._tail;
+    } else { // add to head
+      this._head.previous = makeNode(value);
+      this._head.previous.next = this._head;
+      this._head = this._head.previous;
     }
+  };
+
+  newLinkedList.removeHead = function(){
+    // if no head return undefined
+    if (this._head === undefined) {return;}
+    // delete and return head
     var tempval = this._head.value;
-    //debugger;
     if (this._head.next) {this._head = this._head.next;}
     else {delete this._tail; delete this._head;}
+    return tempval;
+  };
+
+  newLinkedList.removeTail = function(){
+    // if no tail return undefined
+    if (this._tail === undefined) {return;}
+    // delete and return tail
+    var tempval = this._tail.value;
+    if (this._tail.previous) {this._tail = this._tail.previous;}
+    else {delete this._head; delete this._tail;}
     return tempval;
   };
 
@@ -31,10 +57,12 @@ var makeLinkedList = function(){
   return newLinkedList;
 };
 
-var makeNode = function(value){
-  var newNode = {};
-  newNode.value = value;
-  newNode.next = null;
+var makeNode = function(val){
+  var newNode = {
+    value: val,
+    next: null,
+    previous: null
+  };
 
   newNode.removeNextNode = function(){
   };
