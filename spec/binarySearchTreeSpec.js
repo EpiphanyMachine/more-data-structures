@@ -1,14 +1,14 @@
 describe("binarySearchTree", function() {
-  var binarySearchTree;
+  var tree;
 
   beforeEach(function() {
-    binarySearchTree = makeBinarySearchTree();
+    tree = new BinarySearchTree();
   });
 
   it("should have methods named 'insert', 'contains', and 'depthFirstLog", function() {
-    expect(binarySearchTree.children).toEqual(jasmine.any(Function));
-    expect(binarySearchTree.contains).toEqual(jasmine.any(Function));
-    expect(binarySearchTree.depthFirstLog).toEqual(jasmine.any(Function));
+    expect(tree.insert).toEqual(jasmine.any(Function));
+    expect(tree.contains).toEqual(jasmine.any(Function));
+    expect(tree.depthFirstLog).toEqual(jasmine.any(Function));
   });
   // add more tests here to test the functionality of binarySearchTree
 });
