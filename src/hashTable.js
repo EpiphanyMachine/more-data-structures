@@ -12,16 +12,15 @@ var HashTable = function(){
 };
 
 HashTable.prototype.insert = function(key, val){
-  debugger;
-  var index = hash(key, this._limit);
-  // if not an array then make make index 0 = [key, val]
-  if (this._storage[index] === undefined) { this._storage[index] = [[key, value]]; return; }
+  var index = this.hash(key, this._limit);
+  // if not an array then make make index 0 = [key, val] and stop
+  if (!this._storage[index]) {this._storage[index] = [[key, val]]; return;}
   // check array for value
-  var setIndex = _.each(this._storage[index], function(val, arrIndex, array){
-    if (this._storage[index][arrIndex][0] === key) {return arrIndex;}
-  });
-  if (!setIndex) { this._storage[index].push([key, val]); }
-    else { this._storage[index][setIndex][1] = val; }
+  var setIndex = _.map(this._storage[index], function(value, arrIndex, collection){
+    if (collection[arrIndex][0] === key) {return arrIndex;}
+  })[0];// map returns an array so this will take the value from that array
+  if (setIndex === []) {this._storage[index].push([key, val]);}
+  else {this._storage[index][setIndex][1] = val;}
   };
 
   HashTable.prototype.retrieve = function(){
