@@ -4,10 +4,10 @@ var BinarySearchTree = function(val){
 
 BinarySearchTree.prototype.insert = function(val){
   if (this.value === val) {return;}
-  if (val < this.value && this.left === undefined) {this.left = new BinarySearchTree(val); this.left.parent = this;}
-  if (val < this.value && this.left !== undefined) {this.left.insert(val);}
-  if (val > this.value && this.right === undefined) {this.right = new BinarySearchTree(val); this.right.parent = this;}
-  if (val > this.value && this.right !== undefined) {this.right.insert(val);}
+  if (val < this.value && !this.left) {this.left = new BinarySearchTree(val); this.left.parent = this;}
+  if (val < this.value && this.left) {this.left.insert(val);}
+  if (val > this.value && !this.right) {this.right = new BinarySearchTree(val); this.right.parent = this;}
+  if (val > this.value && this.right) {this.right.insert(val);}
 };
 
 BinarySearchTree.prototype.contains = function(val){
