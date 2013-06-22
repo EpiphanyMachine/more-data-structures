@@ -13,12 +13,9 @@ var makeLinkedList = function(){
   };
 
   newLinkedList.addToHead = function(value){
-    // check if a value is being passing in
-    if (value === undefined) {return;}
-    // check if there are any nodes, create first node
-    if (this._tail === undefined) {
-      this._tail = makeNode(value);
-      this._head = this._tail;
+    if (value === undefined) {return;} // check if a value is being passing in
+    if (!this._tail) { // check if there are any nodes, create first node
+      this._head = this._tail = makeNode(value);
     } else { // add to head
       this._head.previous = makeNode(value);
       this._head.previous.next = this._head;
