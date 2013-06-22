@@ -2,17 +2,13 @@ var makeLinkedList = function(){
   var newLinkedList = {};
 
   newLinkedList.addToTail = function(value){
-    // check if a value is being passing in
-    if (value === undefined) {return;}
-    // check if there are any nodes, create first node
-    if (this._tail === undefined) {
-      this._tail = makeNode(value);
-      this._head = this._tail;
-    } else { // add to tail
-      this._tail.next = makeNode(value);
-      this._tail.next.previous = this._tail;
-      this._tail = this._tail.next;
-      this._tail.next = null;
+    if (value === undefined) {return;} // check if a value is being passing in
+    if (!this._tail) { // check if there are any nodes, create first node
+      this._head = this._tail = makeNode(value);
+    } else { // add to tail, set links
+    this._tail.next = makeNode(value);
+    this._tail.next.previous = this._tail;
+    this._tail.next = this._tail;
     }
   };
 
