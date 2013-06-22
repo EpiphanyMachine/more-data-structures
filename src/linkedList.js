@@ -24,28 +24,28 @@ var makeLinkedList = function(){
   };
 
   newLinkedList.removeHead = function(){
-    // if no head return undefined
-    if (this._head === undefined) {return;}
-    // delete, return head, set
+    if (this._head === undefined) {return;} // if no head return undefined
     var tempval = this._head.value;
-    if (this._head.next) {
+    if (!this._head.next) { // this is the last item in the list
+      delete this._tail;
+      delete this._head;
+    } else { // remove the head only
       this._head.next.previous = null;
       this._head = this._head.next;
     }
-    else {delete this._tail; delete this._head;}
     return tempval;
   };
 
   newLinkedList.removeTail = function(){
-    // if no tail return undefined
-    if (this._tail === undefined) {return;}
-    // delete and return tail
+    if (this._tail === undefined) {return;} // if no tail return undefined
     var tempval = this._tail.value;
-    if (this._tail.previous) {
+    if (!this._tail.previous) { // this is the last element
+      delete this._head;
+      delete this._tail;
+    } else {
       this._tail.previous.next = null;
       this._tail = this._tail.previous;
     }
-    else {delete this._head; delete this._tail;}
     return tempval;
   };
 
