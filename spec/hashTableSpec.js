@@ -11,6 +11,7 @@ describe("hashTable", function() {
   });
 
   it("should be able to retrieve an inserted value", function() {
+    debugger;
     hashTable.insert('one', 'hklsjdhfkljsdhf');
     hashTable.insert('hello', 'hjksdhfkjsdhfjkghsd');
     hashTable.insert('two', 'kjsdghfkjsdhf');
@@ -42,19 +43,6 @@ describe("hashTable", function() {
     expect(hashTable.remove('monkey')).toEqual('dshfkjh');
     expect(hashTable.remove('sugar')).toEqual('whjklhfdskjh');
     expect(hashTable.remove('two')).toEqual('kjsdghfkjsdhf');
-  });
-
-  it("should traverse through all items in the storage and run the key values into a callback", function() {
-    var count = 0;
-    hashTable.insert('one', 'hklsjdhfkljsdhf');
-    hashTable.insert('hello', 'hjksdhfkjsdhfjkghsd');
-    hashTable.insert('two', 'kjsdghfkjsdhf');
-    hashTable.insert('sugar', 'whjklhfdskjh');
-    hashTable.insert('paper', 'kldshfkjh');
-    hashTable.insert('zero', 'kldsdfsdgshfkjh');
-    hashTable.insert('monkey', 'dshfkjh');
-    hashTable.traverse(function(){count++;});
-    expect(storage).toEqual(7);
   });
 
   it("should expand when >= 75% full", function() {
