@@ -44,35 +44,17 @@ describe("hashTable", function() {
     expect(hashTable.remove('two')).toEqual('kjsdghfkjsdhf');
   });
 
-  it("should keep an accurate count of indicies used", function() {
+  it("should traverse through all items in the storage and run the key values into a callback", function() {
+    var count = 0;
     hashTable.insert('one', 'hklsjdhfkljsdhf');
-    expect(hashTable._storageLength).toEqual(1);
     hashTable.insert('hello', 'hjksdhfkjsdhfjkghsd');
-    expect(hashTable._storageLength).toEqual(2);
     hashTable.insert('two', 'kjsdghfkjsdhf');
-    expect(hashTable._storageLength).toEqual(2);
     hashTable.insert('sugar', 'whjklhfdskjh');
-    expect(hashTable._storageLength).toEqual(2);
     hashTable.insert('paper', 'kldshfkjh');
-    expect(hashTable._storageLength).toEqual(2);
     hashTable.insert('zero', 'kldsdfsdgshfkjh');
-    expect(hashTable._storageLength).toEqual(2);
     hashTable.insert('monkey', 'dshfkjh');
-    expect(hashTable._storageLength).toEqual(3);
-    hashTable.remove('paper');
-    expect(hashTable._storageLength).toEqual(3);
-    expect(hashTable.remove('one')).toEqual('hklsjdhfkljsdhf');
-    expect(hashTable._storageLength).toEqual(3);
-    expect(hashTable.remove('hello')).toEqual('hjksdhfkjsdhfjkghsd');
-    expect(hashTable._storageLength).toEqual(3);
-    expect(hashTable.remove('zero')).toEqual('kldsdfsdgshfkjh');
-    expect(hashTable._storageLength).toEqual(2);
-    expect(hashTable.remove('monkey')).toEqual('dshfkjh');
-    expect(hashTable._storageLength).toEqual(1);
-    expect(hashTable.remove('sugar')).toEqual('whjklhfdskjh');
-    expect(hashTable._storageLength).toEqual(1);
-    expect(hashTable.remove('two')).toEqual('kjsdghfkjsdhf');
-    expect(hashTable._storageLength).toEqual(0);
+    hashTable.traverse(function(){count++;});
+    expect(storage).toEqual(7);
   });
 
   it("should expand when >= 75% full", function() {
