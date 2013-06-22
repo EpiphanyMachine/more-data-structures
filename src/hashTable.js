@@ -13,7 +13,7 @@ var HashTable = function(){
 
 HashTable.prototype.insert = function(key, val){
   var index = this.hash(key, this._limit);
-  // if not an array then make make index 0 = [key, val] and stop
+  // if index is undefined then make make index 0 = [key, val] and stop
   if (!this._storage[index]) {this._storage[index] = [[key, val]]; return;}
   // check array for value
   var setIndex = _.map(this._storage[index], function(value, arrIndex, collection){
@@ -23,7 +23,16 @@ HashTable.prototype.insert = function(key, val){
   else {this._storage[index][setIndex][1] = val;}
   };
 
-  HashTable.prototype.retrieve = function(){
+  HashTable.prototype.retrieve = function(key){
+  var index = this.hash(key, this._limit);
+  // if index is undefined return undefined
+  if (!this._storage[index]){return;}
+  // check array for value
+  var setIndex = _.map(this._storage[index], function(value, arrIndex, collection){
+    if (collection[arrIndex][0] === key) {return arrIndex;}
+  })[0];// map returns an array so this will take the value from that array
+  if (setIndex === [] || setIndex === undefined) {return;}
+  return this._storage[index][setIndex][1];
   };
 
   HashTable.prototype.remove = function(){
