@@ -10,13 +10,12 @@ var makeTree = function(val){
 
 var treeMethods = {};
 treeMethods.addChild = function(val){
-  this.children[this.children.length] = makeTree(val);
+  this.children.push(makeTree(val));
   this.children[this.children.length - 1].parent = this;
   return this.children[this.children.length - 1];
 };
 
 treeMethods.contains = function(val){
-  // returns true if and node equals val
   return this.value === val || _.any(_.invoke(this.children, 'contains', val));
 };
 
