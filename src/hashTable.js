@@ -1,12 +1,5 @@
 var HashTable = function(){
   this._limit = 4;
-
-  // Use a limited array to store inserted elements.
-  // It'll keep you from using too much space. Usage:
-  //
-  //   limitedArray.set(3, 'hi');
-  //   limitedArray.get(3); // alerts 'hi'
-  //
   this._storage = [];
   this._storageLength = 0;
   this._auditStorage = function(){
