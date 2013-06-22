@@ -11,7 +11,6 @@ describe("hashTable", function() {
   });
 
   it("should be able to retrieve an inserted value", function() {
-    debugger;
     hashTable.insert('one', 'hklsjdhfkljsdhf');
     hashTable.insert('hello', 'hjksdhfkjsdhfjkghsd');
     hashTable.insert('two', 'kjsdghfkjsdhf');
@@ -84,7 +83,7 @@ describe("hashTable", function() {
     hashTable.remove('hello');
     expect(hashTable._limit).toEqual(8);
     hashTable.remove('zero');
-    expect(hashTable._limit).toEqual(4);
+    expect(hashTable._limit).toEqual(8);
     hashTable.remove('monkey');
     expect(hashTable._limit).toEqual(4);
     hashTable.remove('sugar');

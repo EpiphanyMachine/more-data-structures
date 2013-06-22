@@ -74,7 +74,7 @@ HashTable.prototype._resize = function(multiplier){
   this._storage = [];
   this._storageLength = 0;
   this._limit = this._limit * multiplier;
-  this._moveToNewStorage(this._tempStorage);
+  this._moveToNewStorage(this._tempStorage, multiplier);
   delete this._tempStorage;
 };
 
@@ -82,8 +82,8 @@ HashTable.prototype._reduce = function(){
   console.log('reduce');
 };
 
-HashTable.prototype._moveToNewStorage = function(tempStore){
-  for (var i = 0; i < (this._limit / 2); i++) { // iterate through each index
+HashTable.prototype._moveToNewStorage = function(tempStore, multiplier){
+  for (var i = 0; i < (this._limit / multiplier); i++) { // iterate through each index
     if (tempStore[i]) { // check if undefined
       if (tempStore[i].length > 0) { // check if empty array
         for (var j = 0; j < tempStore[i].length; j++) { // iterate through each subArray
