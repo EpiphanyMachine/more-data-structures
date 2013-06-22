@@ -1,14 +1,15 @@
-var makeLinkedList = function(){
+var makeLinkedList = function(value){
   var newLinkedList = {};
+  if (value) {newLinkedList.addToTail(value);}
 
   newLinkedList.addToTail = function(value){
-    if (value === undefined) {return;} // check if a value is being passing in
+    if (!value) {return;} // check if a value is being passing in
     if (!this._tail) { // check if there are any nodes, create first node
       this._head = this._tail = makeNode(value);
     } else { // add to tail, set links
     this._tail.next = makeNode(value);
     this._tail.next.previous = this._tail;
-    this._tail.next = this._tail;
+    this._tail = this._tail.next;
     }
   };
 
@@ -25,7 +26,7 @@ var makeLinkedList = function(){
 
   newLinkedList.removeHead = function(){
     if (this._head === undefined) {return;} // if no head return undefined
-    var tempval = this._head.value;
+    var tempval = this._head;
     if (!this._head.next) { // this is the last item in the list
       delete this._tail;
       delete this._head;
@@ -33,12 +34,12 @@ var makeLinkedList = function(){
       this._head.next.previous = null;
       this._head = this._head.next;
     }
-    return tempval;
+    return tempval.value;
   };
 
   newLinkedList.removeTail = function(){
     if (this._tail === undefined) {return;} // if no tail return undefined
-    var tempval = this._tail.value;
+    var tempval = this._tail;
     if (!this._tail.previous) { // this is the last element
       delete this._head;
       delete this._tail;
@@ -46,7 +47,7 @@ var makeLinkedList = function(){
       this._tail.previous.next = null;
       this._tail = this._tail.previous;
     }
-    return tempval;
+    return tempval.value;
   };
 
   newLinkedList.contains = function(val, node){
