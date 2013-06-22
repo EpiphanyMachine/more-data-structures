@@ -12,6 +12,7 @@ var makeLinkedList = function(){
       this._tail.next = makeNode(value);
       this._tail.next.previous = this._tail;
       this._tail = this._tail.next;
+      this._tail.next = null;
     }
   };
 
@@ -32,7 +33,7 @@ var makeLinkedList = function(){
   newLinkedList.removeHead = function(){
     // if no head return undefined
     if (this._head === undefined) {return;}
-    // delete, return head, set 
+    // delete, return head, set
     var tempval = this._head.value;
     if (this._head.next) {
       this._head.next.previous = null;
