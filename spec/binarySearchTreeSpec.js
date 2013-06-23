@@ -72,5 +72,56 @@ describe("binarySearchTree", function() {
     expect(tree.contains(16)).toEqual(false);
     expect(tree.contains(32)).toEqual(false);
   });
+
+  it("should run depth first when depthFirstLog() is run", function() {
+    tree.insert(15);
+    tree.insert(25);
+    tree.insert(5);
+    tree.insert(17);
+    tree.insert(21);
+    tree.insert(28);
+    tree.insert(0);
+    tree.insert(14);
+    tree.insert(50);
+    tree.insert(1);
+    tree.insert(45);
+    tree.insert(13);
+    tree.insert(12);
+    tree.insert(11);
+    tree.insert(30);
+    tree.insert(35);
+    tree.insert(33);
+    tree.insert(31);
+    tree.insert(34);
+    var depth = [];
+    tree.depthFirstLog(function(val){depth.push(val);});
+    expect(depth).toEqual([20,15,5,0,1,14,13,12,11,17,25,21,28,50,45,30,35,33,31,34]);
+  });
+
+  it("should run breadth first when breadthFirstLog() is run", function() {
+    tree.insert(15);
+    tree.insert(25);
+    tree.insert(5);
+    tree.insert(17);
+    tree.insert(21);
+    tree.insert(28);
+    tree.insert(0);
+    tree.insert(14);
+    tree.insert(50);
+    tree.insert(1);
+    tree.insert(45);
+    tree.insert(13);
+    tree.insert(12);
+    tree.insert(11);
+    tree.insert(30);
+    tree.insert(35);
+    tree.insert(33);
+    tree.insert(31);
+    tree.insert(34);
+    var depth = [];
+    debugger;
+    tree.breadthFirstLog(function(val){depth.push(val);});
+    expect(depth).toEqual([20,15,25,5,17,21,28,0,14,50,1,13,45,12,30,11,35,33,31,34]);
+  });
   // add more tests here to test the functionality of binarySearchTree
 });

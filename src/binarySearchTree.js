@@ -1,6 +1,5 @@
 var BinarySearchTree = function(val){
   this.value = val;
-  this.depth = 0;
 };
 
 BinarySearchTree.prototype.insert = function(val){
@@ -21,20 +20,20 @@ BinarySearchTree.prototype.contains = function(val){
 
 BinarySearchTree.prototype.depthFirstLog = function(func){
   // calls func on each value in a tree depth first
-  func.call(this.value);
+  func(this.value);
   this.left && this.left.depthFirstLog(func);
   this.right && this.right.depthFirstLog(func);
 };
 
 BinarySearchTree.prototype.breadthFirstLog = function(func, kids){
-  kids = kids || this;
+  kids = kids || [this];
   _.each(kids, function(val){
-    func.call(val);
+    func(val.value);
   });
   var gkids = [];
   _.each(kids, function(val){
-    if (val.left) {gkids.push(val.left);}
-    if (val.right) {gkids.push(val.right);}
+    val.left && gkids.push(val.left);
+    val.right && gkids.push(val.right);
   });
-  _.invoke(gkids, 'breadthFirstLog', [func, gkids]);
+  gkids.length > 0 && this.breadthFirstLog(func, gkids);
 };
